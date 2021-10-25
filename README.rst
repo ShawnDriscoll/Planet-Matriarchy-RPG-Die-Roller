@@ -15,6 +15,7 @@ Notes
 
 The Escape from Planet Matriarchy RPG was written by R. Joshua Holland.
 Copyright 2021 - 2022, Total Party Skills.
+https://www.drivethrurpg.com/product/371424/Escape-from-Planet-Matriarchy
 
 Contact
 -------
