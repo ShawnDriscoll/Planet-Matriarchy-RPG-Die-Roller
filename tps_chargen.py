@@ -241,6 +241,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.traitsDisplay.setDisabled(True)
             self.backstoryDisplay.setDisabled(True)
         else:
+            self.temp_dir = os.path.expanduser('~')
+            os.chdir(self.temp_dir)
+            if not os.path.exists('.tpsrpg'):
+                os.mkdir('.tpsrpg')
+            os.chdir(self.temp_dir + '\.tpsrpg')
             if not os.path.exists(self.char_folder):
                 os.mkdir(self.char_folder)
                 log.info(self.char_folder + ' folder created')
@@ -1007,6 +1012,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def loadButton_clicked(self):
         self.filename = QFileDialog.getOpenFileName(self, 'Open TPS Character File', self.char_folder, 'TPS files (*' + self.file_extension + ')')
         if self.filename[0] != '':
+            print(self.filename)
             log.info('Loading ' + self.filename[0])
             with open(self.filename[0], 'r') as json_file:
                 self.char_data = json.load(json_file)
