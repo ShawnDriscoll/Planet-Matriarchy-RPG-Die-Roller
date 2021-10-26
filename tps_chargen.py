@@ -127,7 +127,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.genderEdit.setDisabled(True)
         self.deptBox.setDisabled(True)
         self.rankDisplay.setDisabled(True)
-        self.rewardEdit.setDisabled(True)
         self.levelBox.setDisabled(True)
         self.xpEdit.setDisabled(True)
         self.agilitySkill.valueChanged.connect(self.agilitySkill_valueChanged)
@@ -144,7 +143,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.rangedSkill.valueChanged.connect(self.rangedSkill_valueChanged)
 
         self.charnameEdit.setText('Sample Char')
-        self.rewardEdit.setText('None')
+        self.rewardDisplay.setText('None')
         self.armorDisplay.setText('None')
         self.weaponDisplay.setText('None')
         self.itemsDisplay.setText('None')
@@ -234,7 +233,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.genderEdit.setDisabled(True)
             self.deptBox.setDisabled(True)
             self.rankDisplay.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
             self.levelBox.setDisabled(True)
             self.xpEdit.setDisabled(True)
             self.armorDisplay.setDisabled(True)
@@ -386,8 +384,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.ageEdit.setDisabled(True)
         self.genderEdit.setText('')
         self.genderEdit.setDisabled(True)
-        self.rewardEdit.setText('None')
-        self.rewardEdit.setDisabled(True)
+        self.rewardDisplay.setText('None')
         self.bodyScore.setDisabled(False)
         self.mindScore.setDisabled(False)
         self.spiritScore.setDisabled(False)
@@ -537,7 +534,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -546,7 +546,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -569,7 +569,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -578,7 +581,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
 
@@ -601,7 +604,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -610,7 +616,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -633,7 +639,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -642,7 +651,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -665,7 +674,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -674,7 +686,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -697,7 +709,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -706,7 +721,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
         
@@ -729,7 +744,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -738,7 +756,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -761,7 +779,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -770,7 +791,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -793,7 +814,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -802,7 +826,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -825,7 +849,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -834,7 +861,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -857,7 +884,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -866,7 +896,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -889,7 +919,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setDisabled(False)
-                self.rewardEdit.setDisabled(False)
+                self.rewardDisplay.setText(str(self.agilitySkill.value() + self.beautySkill.value() + self.strengthSkill.value() +
+                        self.knowledgeSkill.value() + self.perceptionSkill.value() + self.technologySkill.value() +
+                        self.charismaSkill.value() + self.empathySkill.value() + self.focusSkill.value() +
+                        self.boxingSkill.value() + self.meleeSkill.value() + self.rangedSkill.value()) + 'xp')
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
         else:
@@ -898,7 +931,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
-            self.rewardEdit.setDisabled(True)
+            self.rewardDisplay.setText('None')
             self.saveButton.setDisabled(True)
             self.actionSave.setDisabled(True)
     
@@ -987,8 +1020,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.temp_field = self.char_data['Dept']
                 self.dept_chosen = self.dept_choice.index(self.temp_field)
                 self.deptBox.setCurrentIndex(self.dept_chosen)
-                self.rewardEdit.setText(self.char_data['Reward'])
-                self.rewardEdit.setDisabled(False)
                 self.bodyScore.setValue(self.char_data['BODY'])
                 self.bodyScore.setDisabled(True)
                 self.mindScore.setValue(self.char_data['MIND'])
@@ -1024,6 +1055,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.rangedSkill.setValue(self.char_data['Ranged'])
                 self.rangedSkill.setDisabled(True)
                 self.additional2Display.setText('0')
+                self.rewardDisplay.setText(self.char_data['Reward'])
                 self.armorDisplay.setText(self.char_data['ARMOR'])
                 self.weaponDisplay.setText(self.char_data['WEAPON'])
                 self.itemsDisplay.setText(self.char_data['ITEMS'])
@@ -1041,7 +1073,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['Name'] = self.charnameEdit.text()
             self.char_data['Age'] = self.ageEdit.text()
             self.char_data['Gender'] = self.genderEdit.text()
-            self.char_data['Reward'] = self.rewardEdit.text()
+            self.char_data['Reward'] = self.rewardDisplay.text()
             self.char_data['BODY'] = self.bodyScore.value()
             self.char_data['MIND'] = self.mindScore.value()
             self.char_data['SPIRIT'] = self.spiritScore.value()
