@@ -1093,3 +1093,4 @@ class Ui_MainWindow(object):
         self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+K"))
         self.actionLoad.setText(_translate("MainWindow", "Load"))
         self.actionLoad.setStatusTip(_translate("MainWindow", "Load character"))
+import chargen_rc
