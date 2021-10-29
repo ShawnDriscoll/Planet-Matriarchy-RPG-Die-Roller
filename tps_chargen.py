@@ -106,6 +106,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionLoad.triggered.connect(self.loadButton_clicked)
         self.saveButton.clicked.connect(self.saveButton_clicked)
         self.actionSave.triggered.connect(self.saveButton_clicked)
+        self.actionVisit_Blog.triggered.connect(self.Visit_Blog)
+        self.actionFeedback.triggered.connect(self.Feedback)
         self.mindScore.valueChanged.connect(self.mindScore_valueChanged)
         self.spiritScore.valueChanged.connect(self.spiritScore_valueChanged)
         self.agilitySkill.setDisabled(True)
@@ -1068,6 +1070,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.traitsDisplay.setText(self.char_data['TRAITS'])
                 self.backstoryDisplay.setText(self.char_data['BACKSTORY'])
                 self.saveButton.setDisabled(False)
+                self.actionSave.setDisabled(False)
 
     def saveButton_clicked(self):
         if self.charnameEdit.text() == '':
@@ -1111,6 +1114,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             json_file_out.close()
             log.info('Character saved as ' + self.charnameEdit.text() + self.file_extension)
             self.popSaveDialog.show()
+
+    def Visit_Blog(self):
+        '''
+        open web browser to blog URL
+        '''
+        os.startfile('http://shawndriscoll.blogspot.com')
+        
+    def Feedback(self):
+        '''
+        open an email letter to send as feedback to the author
+        '''
+        os.startfile('mailto:shawndriscoll@hotmail.com?subject=Feedback: ' + __app__ + ' for Total Party Skills RPG')
 
     def actionAbout_triggered(self):
         '''

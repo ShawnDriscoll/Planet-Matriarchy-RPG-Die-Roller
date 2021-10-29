@@ -17,9 +17,6 @@ class Ui_aboutDialog(object):
         aboutDialog.resize(480, 357)
         aboutDialog.setMinimumSize(QtCore.QSize(480, 357))
         aboutDialog.setMaximumSize(QtCore.QSize(480, 357))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/images/chargen_icon_16x16.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        aboutDialog.setWindowIcon(icon)
         self.aboutOKButton = QtWidgets.QPushButton(aboutDialog)
         self.aboutOKButton.setGeometry(QtCore.QRect(380, 320, 75, 23))
         self.aboutOKButton.setObjectName("aboutOKButton")
@@ -47,4 +44,3 @@ class Ui_aboutDialog(object):
         aboutDialog.setWindowTitle(_translate("aboutDialog", "About TPS CharGen"))
         self.aboutOKButton.setText(_translate("aboutDialog", "OK"))
         self.textLabel.setText(_translate("aboutDialog", "<html><head/><body><p><span style=\" font-weight:600;\">TPS CharGen for Windows 10</span></p><p>Version: Total Party Skills Edition</p><p>Build: 0.0.4 (Beta)</p><p>Produced by Shawn Driscoll. Copyright (C) 2021.</p><p>Visit blog at <a href=\"http://shawndriscoll.blogspot.com\"><span style=\" text-decoration: underline; color:#0000ff;\">shawndriscoll.blogspot.com</span></a><br/>For support, email <a href=\"mailto:shawndriscoll@hotmail.com?subject=TPS CharGen 0.0.4b\"><span style=\" text-decoration: underline; color:#0000ff;\">shawndriscoll@hotmail.com</span></a></p><p>Qt GUI Toolkit is copyright (C) 2020 The Qt Company Ltd</p><p><br/></p><p>The Escape from Planet Matriarchy RPG was written by R. Joshua Holland. Copyright 2021 - 2022, Total Party Skills.</p></body></html>"))
-import chargen_rc
