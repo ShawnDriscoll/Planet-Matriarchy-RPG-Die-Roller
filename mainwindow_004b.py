@@ -1123,3 +1123,4 @@ class Ui_MainWindow(object):
         self.actionVisit_Blog.setText(_translate("MainWindow", "Visit Blog"))
         self.actionVisit_Blog.setStatusTip(_translate("MainWindow", "Visit Shawn\'s blog"))
         self.actionOverview.setText(_translate("MainWindow", "Overview"))
+        self.actionOverview.setStatusTip(_translate("MainWindow", "Give an overview"))
