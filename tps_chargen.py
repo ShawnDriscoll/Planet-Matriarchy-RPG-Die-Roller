@@ -108,6 +108,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionSave.triggered.connect(self.saveButton_clicked)
         self.actionVisit_Blog.triggered.connect(self.Visit_Blog)
         self.actionFeedback.triggered.connect(self.Feedback)
+        self.actionOverview.triggered.connect(self.Overview_menu)
         self.mindScore.valueChanged.connect(self.mindScore_valueChanged)
         self.spiritScore.valueChanged.connect(self.spiritScore_valueChanged)
         self.agilitySkill.setDisabled(True)
@@ -1130,6 +1131,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         open an email letter to send as feedback to the author
         '''
         os.startfile('mailto:shawndriscoll@hotmail.com?subject=Feedback: ' + __app__ + ' for Total Party Skills RPG')
+    
+    def Overview_menu(self):
+        '''
+        open this app's PDF manual
+        '''
+        log.info(__app__ + ' looking for PDF manual...')
+        os.startfile(CURRENT_DIR + '\\tps_chargen_manual.pdf')
+        log.info(__app__ + ' found PDF manual. Opening...')
 
     def actionAbout_triggered(self):
         '''
@@ -1187,5 +1196,7 @@ if __name__ == '__main__':
 
     mainApp = MainWindow()
     mainApp.show()
+    
+    CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
     app.exec_()
