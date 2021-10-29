@@ -182,6 +182,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.char_folder = 'Planet Matriarchy Characters'
         self.file_extension = '.tps'
+        self.file_format = 1.0
 
         # Set the About menu item
         self.popAboutDialog = aboutDialog()
@@ -1018,7 +1019,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             log.info('Loading ' + self.filename[0])
             with open(self.filename[0], 'r') as json_file:
                 self.char_data = json.load(json_file)
-                pprint.pprint(self.char_data)
+                #pprint.pprint(self.char_data)
+                self.format_read = self.char_data['Fileformat']
+                log.info('File format is: ' + str(self.format_read))
                 self.charnameEdit.setText(self.char_data['Name'])
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setText(self.char_data['Age'])
@@ -1079,6 +1082,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             json_file_out = open(self.char_folder + '/' + self.charnameEdit.text() + self.file_extension, 'w')
             self.char_data = {}
+            self.char_data['Fileformat'] = self.file_format
             self.char_data['Name'] = self.charnameEdit.text()
             self.char_data['Age'] = self.ageEdit.text()
             self.char_data['Gender'] = self.genderEdit.text()
@@ -1112,7 +1116,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['XP'] = self.char_xp
             json.dump(self.char_data, json_file_out, ensure_ascii=True)
             json_file_out.close()
-            log.info('Character saved as ' + self.charnameEdit.text() + self.file_extension)
+            log.info('Character saved as ' + self.charnameEdit.text() + self.file_extension + ' in file format ' + str(self.file_format))
             self.popSaveDialog.show()
 
     def Visit_Blog(self):
