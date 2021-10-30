@@ -147,13 +147,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.charnameEdit.setText('Sample Char')
         self.rewardDisplay.setText('None')
-        self.armorDisplay.setText('None')
-        self.weaponDisplay.setText('None')
-        self.itemsDisplay.setText('None')
-        self.specialDisplay.setText('None')
-        self.traitsDisplay.setText('')
-        self.backstoryDisplay.setText('')
-        self.notesDisplay.setText('')
+        self.armorDisplay.setPlainText('None')
+        self.weaponDisplay.setPlainText('None')
+        self.itemsDisplay.setPlainText('Underwear, small Logbook, NASA ID')
+        self.specialDisplay.setPlainText('None')
+        self.traitsDisplay.setPlainText('')
+        self.backstoryDisplay.setPlainText('')
+        self.notesDisplay.setPlainText('')
         self.deptBox.addItem('Choose')
         self.deptBox.addItem('Academy')
         self.deptBox.addItem('Civilian')
@@ -404,13 +404,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.bodyScore.setDisabled(False)
         self.mindScore.setDisabled(False)
         self.spiritScore.setDisabled(False)
-        self.armorDisplay.setText('None')
-        self.weaponDisplay.setText('None')
-        self.itemsDisplay.setText('None')
-        self.specialDisplay.setText('None')
-        self.traitsDisplay.setText('')
-        self.backstoryDisplay.setText('')
-        self.notesDisplay.setText('')
+        self.armorDisplay.setPlainText('None')
+        self.weaponDisplay.setPlainText('None')
+        self.itemsDisplay.setPlainText('Underwear, small Logbook, NASA ID')
+        self.specialDisplay.setPlainText('None')
+        self.traitsDisplay.setPlainText('')
+        self.backstoryDisplay.setPlainText('')
+        self.notesDisplay.setPlainText('')
 
         self.char_level = 1
 
@@ -958,7 +958,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.dept_chosen = ''
             self.rankDisplay.setDisabled(True)
             self.rankDisplay.setText('')
-            self.itemsDisplay.setText('None')
+            self.itemsDisplay.setPlainText('Underwear, small Logbook, NASA ID')
             self.bodyScore.setDisabled(False)
             self.mindScore.setDisabled(False)
             self.spiritScore.setDisabled(False)
@@ -1017,7 +1017,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.additional_skill_points = 2
             self.additional2Display.setText(str(self.additional_skill_points))
             self.department_not_chosen = False
-            self.itemsDisplay.setText(self.dept_item_chosen)
+            self.temp_item = self.itemsDisplay.toPlainText()
+            self.itemsDisplay.setPlainText(self.temp_item + ', ' + self.dept_item_chosen)
 
     def levelBox_changed(self):
         self.char_level = self.levelBox.currentIndex() + 1
@@ -1077,13 +1078,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.rangedSkill.setDisabled(True)
                 self.additional2Display.setText('0')
                 self.rewardDisplay.setText(self.char_data['Reward'])
-                self.armorDisplay.setText(self.char_data['ARMOR'])
-                self.weaponDisplay.setText(self.char_data['WEAPON'])
-                self.itemsDisplay.setText(self.char_data['ITEMS'])
-                self.specialDisplay.setText(self.char_data['SPECIAL'])
-                self.traitsDisplay.setText(self.char_data['TRAITS'])
-                self.backstoryDisplay.setText(self.char_data['BACKSTORY'])
-                self.notesDisplay.setText(self.char_data['NOTES'])
+                self.armorDisplay.setPlainText(self.char_data['ARMOR'])
+                self.weaponDisplay.setPlainText(self.char_data['WEAPON'])
+                self.itemsDisplay.setPlainText(self.char_data['ITEMS'])
+                self.specialDisplay.setPlainText(self.char_data['SPECIAL'])
+                self.traitsDisplay.setPlainText(self.char_data['TRAITS'])
+                self.backstoryDisplay.setPlainText(self.char_data['BACKSTORY'])
+                self.notesDisplay.setPlainText(self.char_data['NOTES'])
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
 
@@ -1119,13 +1120,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['Ranged'] = self.rangedSkill.value()
             self.char_data['Dept'] = self.dept_chosen
             self.char_data['Rank'] =self.rankDisplay.text()
-            self.char_data['ARMOR'] = self.armorDisplay.text()
-            self.char_data['WEAPON'] = self.weaponDisplay.text()
-            self.char_data['ITEMS'] = self.itemsDisplay.text()
-            self.char_data['SPECIAL'] = self.specialDisplay.text()
-            self.char_data['TRAITS'] = self.traitsDisplay.text()
-            self.char_data['BACKSTORY'] = self.backstoryDisplay.text()
-            self.char_data['NOTES'] = self.notesDisplay.text()
+            self.char_data['ARMOR'] = self.armorDisplay.toPlainText()
+            self.char_data['WEAPON'] = self.weaponDisplay.toPlainText()
+            self.char_data['ITEMS'] = self.itemsDisplay.toPlainText()
+            self.char_data['SPECIAL'] = self.specialDisplay.toPlainText()
+            self.char_data['TRAITS'] = self.traitsDisplay.toPlainText()
+            self.char_data['BACKSTORY'] = self.backstoryDisplay.toPlainText()
+            self.char_data['NOTES'] = self.notesDisplay.toPlainText()
             self.char_data['Level'] = self.char_level
             self.char_data['XP'] = self.char_xp
             json.dump(self.char_data, json_file_out, ensure_ascii=True)
