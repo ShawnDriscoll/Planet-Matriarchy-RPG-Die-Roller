@@ -12,6 +12,8 @@ Notes
 
 **Planet Matriarchy RPG Character Generator** is being developed using Python 3.9.7 and PyQt5.
 
+.. figure:: images/tps_chargen.png
+
 
 The Escape from Planet Matriarchy RPG was written by R. Joshua Holland.
 Copyright 2021 - 2022, Total Party Skills.
