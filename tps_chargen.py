@@ -184,6 +184,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.char_xp = 0
 
         self.char_folder = 'Planet Matriarchy Characters'
+        #self.char_folder = 'We Want Soviet Men'
         self.file_extension = '.tps'
         self.file_format = 1.1
 
@@ -260,6 +261,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if not os.path.exists(self.char_folder):
                 os.mkdir(self.char_folder)
                 log.info(self.char_folder + ' folder created')
+            if not os.path.exists('tps.ini'):
+                with open('tps.ini', 'w') as f:
+                    f.write('[CharGen Folders]\n')
+                    f.write(self.char_folder + '\n')
+                log.info('tps.ini created and initialized')
+            else:
+                self.contains_foldername = False
+                with open('tps.ini', 'r') as f:
+                    if self.char_folder in f.read():
+                        self.contains_foldername = True
+                if not self.contains_foldername:
+                    with open('tps.ini', 'a') as f:
+                        f.write(self.char_folder + '\n')
+                    log.info(self.char_folder + ' added to TPS folder list')
 
     #   Initialize Attribute Scores
     
