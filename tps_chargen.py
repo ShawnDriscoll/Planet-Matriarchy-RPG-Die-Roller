@@ -4,7 +4,7 @@
 ########################################################
 
 """
-TPS Chargen 0.0.4 Beta
+TPS Chargen 0.0.5 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Total Party Skills RPG.
@@ -14,10 +14,10 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import time
-from mainwindow_004b import Ui_MainWindow
-from aboutdialog_004b import Ui_aboutDialog
-from alertdialog_004b import Ui_alertDialog
-from savedialog_004b import Ui_saveDialog
+from mainwindow_005b import Ui_MainWindow
+from aboutdialog_005b import Ui_aboutDialog
+from alertdialog_005b import Ui_alertDialog
+from savedialog_005b import Ui_saveDialog
 import sys
 import os
 import logging
@@ -25,8 +25,8 @@ import json
 import pprint
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'TPS CharGen 0.0.4 (Beta)'
-__version__ = '0.0.4b'
+__app__ = 'TPS CharGen 0.0.5 (Beta)'
+__version__ = '0.0.5b'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -150,8 +150,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.armorDisplay.setText('None')
         self.weaponDisplay.setText('None')
         self.itemsDisplay.setText('None')
+        self.specialDisplay.setText('None')
         self.traitsDisplay.setText('')
         self.backstoryDisplay.setText('')
+        self.notesDisplay.setText('')
         self.deptBox.addItem('Choose')
         self.deptBox.addItem('Academy')
         self.deptBox.addItem('Civilian')
@@ -183,7 +185,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.char_folder = 'Planet Matriarchy Characters'
         self.file_extension = '.tps'
-        self.file_format = 1.0
+        self.file_format = 1.1
 
         # Set the About menu item
         self.popAboutDialog = aboutDialog()
@@ -211,6 +213,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionSave.setDisabled(True)
             self.loadButton.setDisabled(True)
             self.actionLoad.setDisabled(True)
+            self.actionVisit_Blog.setDisabled(True)
+            self.actionFeedback.setDisabled(True)
+            self.actionOverview.setDisabled(True)
             self.actionAbout_TPS_CharGen.setDisabled(True)
             self.bodyScore.setDisabled(True)
             self.mindScore.setDisabled(True)
@@ -242,8 +247,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.armorDisplay.setDisabled(True)
             self.weaponDisplay.setDisabled(True)
             self.itemsDisplay.setDisabled(True)
+            self.specialDisplay.setDisabled(True)
             self.traitsDisplay.setDisabled(True)
             self.backstoryDisplay.setDisabled(True)
+            self.notesDisplay.setDisabled(True)
         else:
             self.temp_dir = os.path.expanduser('~')
             os.chdir(self.temp_dir)
@@ -400,8 +407,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.armorDisplay.setText('None')
         self.weaponDisplay.setText('None')
         self.itemsDisplay.setText('None')
+        self.specialDisplay.setText('None')
         self.traitsDisplay.setText('')
         self.backstoryDisplay.setText('')
+        self.notesDisplay.setText('')
 
         self.char_level = 1
 
@@ -1016,7 +1025,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def loadButton_clicked(self):
         self.filename = QFileDialog.getOpenFileName(self, 'Open TPS Character File', self.char_folder, 'TPS files (*' + self.file_extension + ')')
         if self.filename[0] != '':
-            print(self.filename)
+            #print(self.filename)
             log.info('Loading ' + self.filename[0])
             with open(self.filename[0], 'r') as json_file:
                 self.char_data = json.load(json_file)
@@ -1071,8 +1080,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.armorDisplay.setText(self.char_data['ARMOR'])
                 self.weaponDisplay.setText(self.char_data['WEAPON'])
                 self.itemsDisplay.setText(self.char_data['ITEMS'])
+                self.specialDisplay.setText(self.char_data['SPECIAL'])
                 self.traitsDisplay.setText(self.char_data['TRAITS'])
                 self.backstoryDisplay.setText(self.char_data['BACKSTORY'])
+                self.notesDisplay.setText(self.char_data['NOTES'])
                 self.saveButton.setDisabled(False)
                 self.actionSave.setDisabled(False)
 
@@ -1111,8 +1122,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['ARMOR'] = self.armorDisplay.text()
             self.char_data['WEAPON'] = self.weaponDisplay.text()
             self.char_data['ITEMS'] = self.itemsDisplay.text()
+            self.char_data['SPECIAL'] = self.specialDisplay.text()
             self.char_data['TRAITS'] = self.traitsDisplay.text()
             self.char_data['BACKSTORY'] = self.backstoryDisplay.text()
+            self.char_data['NOTES'] = self.notesDisplay.text()
             self.char_data['Level'] = self.char_level
             self.char_data['XP'] = self.char_xp
             json.dump(self.char_data, json_file_out, ensure_ascii=True)
@@ -1188,7 +1201,7 @@ if __name__ == '__main__':
 
     log.info(__app__ + ' started, and running...')
 
-    if trange[0] > 2021 or trange[1] > 10:
+    if trange[0] > 2021 or trange[1] > 11:
         __expired_tag__ = True
         __app__ += ' [EXPIRED]'
         
