@@ -436,6 +436,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         A Body Score was entered.
         Add/substract from additional Attribute points.
         '''
+        self.movementDisplay.setText(str(1 + self.bodyScore.value() + self.agilitySkill.value()) + ' spaces')
+        self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
         self.additional_attribute_points += self.tempbodyScore - self.bodyScore.value()
         if self.additional_attribute_points >= 0:
             self.additional1Display.setText(str(self.additional_attribute_points))
@@ -553,6 +555,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         An Agility Skill was entered.
         Add/substract from additional Skill points.
         '''
+        self.movementDisplay.setText(str(1 + self.bodyScore.value() + self.agilitySkill.value()) + ' spaces')
+        self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
         self.additional_skill_points += self.tempagilitySkill - self.agilitySkill.value()
         if self.additional_skill_points >= 0:
             self.additional2Display.setText(str(self.additional_skill_points))
@@ -623,6 +627,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         A Strength Skill was entered.
         Add/substract from additional Skill points.
         '''
+        self.movementDisplay.setText(str(1 + self.bodyScore.value() + self.agilitySkill.value()) + ' spaces')
+        self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
         self.additional_skill_points += self.tempstrengthSkill - self.strengthSkill.value()
         if self.additional_skill_points >= 0:
             self.additional2Display.setText(str(self.additional_skill_points))
@@ -1057,6 +1063,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.temp_field = self.char_data['Dept']
                 self.dept_chosen = self.dept_choice.index(self.temp_field)
                 self.deptBox.setCurrentIndex(self.dept_chosen)
+                self.rankDisplay.setText(self.char_data['Rank'])
                 self.bodyScore.setValue(self.char_data['BODY'])
                 self.bodyScore.setDisabled(True)
                 self.mindScore.setValue(self.char_data['MIND'])
