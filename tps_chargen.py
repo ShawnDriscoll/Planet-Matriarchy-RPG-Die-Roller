@@ -1142,8 +1142,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     log.debug('Character can move fine.')
                 elif int(self.healthDisplay.text()) == 1:
                     self.movementDisplay.setText('<span style=" color:#ff0000;">' + str((1 + self.bodyScore.value() + self.agilitySkill.value()) // 2) + ' spaces</span>')
+                    self.rangeDisplay.setText('<span style=" color:#ff0000;">' + str((1 + self.bodyScore.value() + self.strengthSkill.value()) // 2) + ' miles</span>')
                     log.debug("Character's movement is cut in half.")
-                    self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
                 elif int(self.healthDisplay.text()) < 1:
                     self.movementDisplay.setText('<span style=" color:#ff0000;">0 spaces</span>')
                     self.rangeDisplay.setText('<span style=" color:#ff0000;">0 miles</span>')
