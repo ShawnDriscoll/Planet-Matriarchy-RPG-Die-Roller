@@ -22,7 +22,7 @@ import sys
 import os
 import logging
 import json
-import pprint
+#import pprint
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
 __app__ = 'TPS CharGen 0.0.5 (Beta)'
@@ -416,6 +416,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.genderEdit.setText('')
         self.genderEdit.setDisabled(True)
         self.rewardDisplay.setText('None')
+        self.healthStatus.setText('')
+        self.sanityStatus.setText('')
+        self.moraleStatus.setText('')
         self.bodyScore.setDisabled(False)
         self.mindScore.setDisabled(False)
         self.spiritScore.setDisabled(False)
@@ -1070,9 +1073,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.mindScore.setDisabled(True)
                 self.spiritScore.setValue(self.char_data['SPIRIT'])
                 self.spiritScore.setDisabled(True)
+                self.healthStatus.setText('')
+                self.sanityStatus.setText('')
+                self.moraleStatus.setText('')
                 self.healthDisplay.setText(self.char_data['HEALTH'])
+                if self.healthDisplay.text() == '2':
+                    self.healthStatus.setText('<span style=" color:#ff0000;">Hurt</span>')
+                if self.healthDisplay.text() == '1':
+                    self.healthStatus.setText('<span style=" color:#ff0000;">Wounded</span>')
+                if self.healthDisplay.text() == '0':
+                    self.healthStatus.setText('<span style=" color:#ff0000;">Incapacitated</span>')
+                    log.debug('Character is incapacitated!')
+                if int(self.healthDisplay.text()) < 0:
+                    self.healthStatus.setText('<span style=" color:#ff0000;">Expire</span>')
+                    log.debug('Character has expired!')
                 self.sanityDisplay.setText(self.char_data['SANITY'])
+                if self.sanityDisplay.text() == '2':
+                    self.sanityStatus.setText('<span style=" color:#ff0000;">Hurt</span>')
+                if self.sanityDisplay.text() == '1':
+                    self.sanityStatus.setText('<span style=" color:#ff0000;">Wounded</span>')
+                if self.sanityDisplay.text() == '0':
+                    self.sanityStatus.setText('<span style=" color:#ff0000;">Erratic</span>')
+                    log.debug('Character is erratic!')
+                if int(self.sanityDisplay.text()) < 0:
+                    self.sanityStatus.setText('<span style=" color:#ff0000;">Snap</span>')
+                    log.debug('Character has snapped!')
                 self.moraleDisplay.setText(self.char_data['MORALE'])
+                if self.moraleDisplay.text() == '2':
+                    self.moraleStatus.setText('<span style=" color:#ff0000;">Hurt</span>')
+                if self.moraleDisplay.text() == '1':
+                    self.moraleStatus.setText('<span style=" color:#ff0000;">Wounded</span>')
+                if self.moraleDisplay.text() == '0':
+                    self.moraleStatus.setText('<span style=" color:#ff0000;">In Fear</span>')
+                    log.debug('Character is in fear!')
+                if int(self.moraleDisplay.text()) < 0:
+                    self.moraleStatus.setText('<span style=" color:#ff0000;">Submit</span>')
+                    log.debug('Character has submit!')
                 self.additional1Display.setText('0')
                 self.agilitySkill.setValue(self.char_data['Agility'])
                 self.agilitySkill.setDisabled(True)
@@ -1100,6 +1136,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.rangedSkill.setDisabled(True)
                 self.additional2Display.setText('0')
                 self.rewardDisplay.setText(self.char_data['Reward'])
+                if int(self.healthDisplay.text()) > 1:
+                    self.movementDisplay.setText(str(1 + self.bodyScore.value() + self.agilitySkill.value()) + ' spaces')
+                    self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
+                    log.debug('Character can move fine.')
+                elif int(self.healthDisplay.text()) == 1:
+                    self.movementDisplay.setText('<span style=" color:#ff0000;">' + str((1 + self.bodyScore.value() + self.agilitySkill.value()) // 2) + ' spaces</span>')
+                    log.debug("Character's movement is cut in half.")
+                    self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
+                elif int(self.healthDisplay.text()) < 1:
+                    self.movementDisplay.setText('<span style=" color:#ff0000;">0 spaces</span>')
+                    self.rangeDisplay.setText('<span style=" color:#ff0000;">0 miles</span>')
+                    log.debug("Character can't move.")
                 self.armorDisplay.setPlainText(self.char_data['ARMOR'])
                 self.weaponDisplay.setPlainText(self.char_data['WEAPON'])
                 self.itemsDisplay.setPlainText(self.char_data['ITEMS'])
