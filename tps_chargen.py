@@ -184,7 +184,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.char_xp = 0
 
         self.char_folder = 'Planet Matriarchy Characters'
-        #self.char_folder = 'We Want Soviet Men'
         self.file_extension = '.tps'
         self.file_format = 1.1
 
@@ -199,7 +198,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         log.info('PyQt5 MainWindow initialized.')
 
-        if __expired_tag__ == True:
+        if __expired_tag__ is True:
             '''
             Beta for this app has expired!
             '''
@@ -253,6 +252,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.backstoryDisplay.setDisabled(True)
             self.notesDisplay.setDisabled(True)
         else:
+            '''
+            Create .tpsrpg folder and tps.ini file the first time this program is run.
+            Also, create the save folder for this program to save its .tps files in.
+            '''
             self.temp_dir = os.path.expanduser('~')
             os.chdir(self.temp_dir)
             if not os.path.exists('.tpsrpg'):
@@ -978,6 +981,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionSave.setDisabled(True)
     
     def deptBox_changed(self):
+        '''
+        A crew department was chosen for the character
+        '''
         if self.deptBox.currentIndex() == 0:
             self.dept_chosen = ''
             self.rankDisplay.setDisabled(True)
@@ -1048,6 +1054,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.char_level = self.levelBox.currentIndex() + 1
     
     def loadButton_clicked(self):
+        '''
+        Load a .tps file for an already saved character.
+        The file is stored in JSON format.
+        '''
         self.filename = QFileDialog.getOpenFileName(self, 'Open TPS Character File', self.char_folder, 'TPS files (*' + self.file_extension + ')')
         if self.filename[0] != '':
             #print(self.filename)
@@ -1159,6 +1169,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionSave.setDisabled(False)
 
     def saveButton_clicked(self):
+        '''
+        Save the .tps file for a generated or edited character.
+        The name of the saved file is the name of the character.
+        The file is stored in JSON format.
+        '''
         if self.charnameEdit.text() == '':
             print('NO NAME!')
             log.debug("Can't save because of NO NAME!")
@@ -1272,7 +1287,7 @@ if __name__ == '__main__':
 
     log.info(__app__ + ' started, and running...')
 
-    if trange[0] > 2021 or trange[1] > 11:
+    if trange[0] > 2020 or trange[1] > 11:
         __expired_tag__ = True
         __app__ += ' [EXPIRED]'
         
