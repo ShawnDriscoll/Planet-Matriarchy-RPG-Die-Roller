@@ -12,7 +12,7 @@ Notes
 
 **Planet Matriarchy RPG Character Generator** is being developed using Python 3.9.7 and PyQt5.
 
-.. figure:: images/tps_chargen.png
+.. figure:: images/efpm_chargen.png
 
 
 Requirements

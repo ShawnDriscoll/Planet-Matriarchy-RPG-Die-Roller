@@ -4,7 +4,7 @@
 ########################################################
 
 """
-TPS Chargen 0.0.5 Beta
+EFPM Chargen 0.0.5 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Total Party Skills RPG.
@@ -25,7 +25,7 @@ import json
 #import pprint
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'TPS CharGen 0.0.5 (Beta)'
+__app__ = 'EFPM CharGen 0.0.5 (Beta)'
 __version__ = '0.0.5b'
 __expired_tag__ = False
 
@@ -97,7 +97,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         log.info('PyQt5 MainWindow initializing...')
         self.setupUi(self)
-        self.actionAbout_TPS_CharGen.triggered.connect(self.actionAbout_triggered)
+        self.actionAbout_EFPM_CharGen.triggered.connect(self.actionAbout_triggered)
         self.actionQuitProg.triggered.connect(self.actionQuitProg_triggered)
         self.bodyScore.valueChanged.connect(self.bodyScore_valueChanged)
         self.clearButton.clicked.connect(self.clearButton_clicked)
@@ -216,7 +216,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionVisit_Blog.setDisabled(True)
             self.actionFeedback.setDisabled(True)
             self.actionOverview.setDisabled(True)
-            self.actionAbout_TPS_CharGen.setDisabled(True)
+            self.actionAbout_EFPM_CharGen.setDisabled(True)
             self.bodyScore.setDisabled(True)
             self.mindScore.setDisabled(True)
             self.spiritScore.setDisabled(True)
@@ -1236,7 +1236,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         open this app's PDF manual
         '''
         log.info(__app__ + ' looking for PDF manual...')
-        os.startfile(CURRENT_DIR + '\\tps_chargen_manual.pdf')
+        os.startfile(CURRENT_DIR + '\\efpm_chargen_manual.pdf')
         log.info(__app__ + ' found PDF manual. Opening...')
 
     def actionAbout_triggered(self):
@@ -1268,13 +1268,13 @@ if __name__ == '__main__':
     If this program is imported instead of run, none of the code below is executed.
     '''
 
-    log = logging.getLogger('TPS_Chargen_' + __version__)
+    log = logging.getLogger('EFPM_Chargen_' + __version__)
     log.setLevel(logging.DEBUG)
 
     if not os.path.exists('Logs'):
         os.mkdir('Logs')
     
-    fh = logging.FileHandler('Logs/tps_chargen.log', 'w')
+    fh = logging.FileHandler('Logs/efpm_chargen.log', 'w')
  
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(name)s - %(message)s', datefmt = '%a, %d %b %Y %H:%M:%S')
     fh.setFormatter(formatter)
@@ -1287,7 +1287,7 @@ if __name__ == '__main__':
 
     log.info(__app__ + ' started, and running...')
 
-    if trange[0] > 2020 or trange[1] > 11:
+    if trange[0] > 2021 or trange[1] > 11:
         __expired_tag__ = True
         __app__ += ' [EXPIRED]'
         
