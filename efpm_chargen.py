@@ -149,20 +149,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.rewardDisplay.setText('None')
         self.armorDisplay.setPlainText('None')
         self.weaponDisplay.setPlainText('None')
-        self.itemsDisplay.setPlainText('Underwear, small Logbook, NASA ID')
+        self.starting_items = 'Underwear, small Logbook, NASA ID'
+        self.itemsDisplay.setPlainText(self.starting_items)
         self.specialDisplay.setPlainText('None')
         self.traitsDisplay.setPlainText('')
         self.backstoryDisplay.setPlainText('')
         self.notesDisplay.setPlainText('')
-        self.deptBox.addItem('Choose')
-        self.deptBox.addItem('Academy')
-        self.deptBox.addItem('Civilian')
-        self.deptBox.addItem('Engineering')
-        self.deptBox.addItem('Flight')
-        self.deptBox.addItem('Intelligence')
-        self.deptBox.addItem('Medical')
-        self.deptBox.addItem('Military')
-        self.deptBox.addItem('Science')
+        self.dept_choice = ['Choose', 'Academy', 'Civilian', 'Engineering', 'Flight', 'Intelligence', 'Medical', 'Military', 'Science']
+        for i in self.dept_choice:
+            self.deptBox.addItem(i)
         self.deptBox.setCurrentIndex(0)
         self.deptBox.currentIndexChanged.connect(self.deptBox_changed)
         self.dept_choice = ['Choose', 'Academy', 'Civilian', 'Engineering', 'Flight', 'Intelligence', 'Medical', 'Military', 'Science']
@@ -984,11 +979,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         '''
         A crew department was chosen for the character
         '''
+        self.itemsDisplay.setPlainText(self.starting_items)
         if self.deptBox.currentIndex() == 0:
             self.dept_chosen = ''
             self.rankDisplay.setDisabled(True)
             self.rankDisplay.setText('')
-            self.itemsDisplay.setPlainText('Underwear, small Logbook, NASA ID')
             self.bodyScore.setDisabled(False)
             self.mindScore.setDisabled(False)
             self.spiritScore.setDisabled(False)
