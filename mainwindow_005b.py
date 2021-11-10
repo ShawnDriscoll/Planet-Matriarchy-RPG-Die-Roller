@@ -22,6 +22,9 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         MainWindow.setFont(font)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/efpm.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.attributeBox = QtWidgets.QGroupBox(self.centralwidget)
@@ -1372,3 +1375,4 @@ class Ui_MainWindow(object):
         self.actionVisit_Blog.setStatusTip(_translate("MainWindow", "Visit Shawn\'s blog"))
         self.actionOverview.setText(_translate("MainWindow", "Overview"))
         self.actionOverview.setStatusTip(_translate("MainWindow", "Give an overview"))
+import efpm_chargen_rc
