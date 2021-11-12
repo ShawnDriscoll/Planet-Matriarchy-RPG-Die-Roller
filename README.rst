@@ -30,6 +30,10 @@ Requirements
 * **PyQt5 5.15.4**
 
    PyQt5 is the framework used for displaying the Window GUI and buttons, etc.
+
+* **fpdf2 2.4.5**
+
+   Fpdf2 is needed for printing the character sheets.
    
 
 Warning
@@ -41,7 +45,8 @@ This code will not work with **Python 2.7-**.
 Not Using Python?
 -----------------
 
-You can always run the .EXE version for Windows 10 if you don't have the Python language installed.
+You can always run the .EXE version for Windows 10 if you don't have the Python language installed. The .EXE version does not create PDFs
+at this time.
 
 
 The Escape from Planet Matriarchy RPG was written by R. Joshua Holland.
