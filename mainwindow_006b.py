@@ -1359,7 +1359,7 @@ class Ui_MainWindow(object):
         self.weaponDisplay.setStatusTip(_translate("MainWindow", "Character\'s weapon list"))
         self.itemsBox.setTitle(_translate("MainWindow", "Items"))
         self.itemsDisplay.setToolTip(_translate("MainWindow", "Items List"))
-        self.itemsDisplay.setStatusTip(_translate("MainWindow", "Items carried = character\'s body score + strength bonus"))
+        self.itemsDisplay.setStatusTip(_translate("MainWindow", "Items carried = 1 + character\'s body score + strength bonus"))
         self.ageLabel.setText(_translate("MainWindow", "Age"))
         self.ageEdit.setToolTip(_translate("MainWindow", "Enter Age"))
         self.ageEdit.setStatusTip(_translate("MainWindow", "Enter character\'s age"))

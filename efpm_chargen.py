@@ -164,7 +164,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.deptBox.addItem(i)
         self.deptBox.setCurrentIndex(0)
         self.deptBox.currentIndexChanged.connect(self.deptBox_changed)
-        self.dept_choice = ['Choose', 'Academy', 'Civilian', 'Engineering', 'Flight', 'Intelligence', 'Medical', 'Military', 'Science']
         self.dept_rank = ['', 'Cadet', 'Observer', 'Mechanic', 'Pilot', 'Agent', 'Medic', 'Marine', 'Scientist']
         self.dept_skill = ['', 'Spirit', 'Body', 'Mind', 'Body', 'Combat', 'Spirit', 'Combat', 'Mind']
         self.dept_item = ['', 'Flight Suit, JetPack', 'Flight Suit, Camera', 'Flight Suit, Toolkit', 'Space Suit, Radio', 'Flight Suit, Stunner', 'Flight Suit, Medkit', 'Space Suit, Baton', 'Space Suit, Scanner']
@@ -1326,11 +1325,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         some_text = some_text.split()
         while len(some_text) > 0:
             some_words = ''
-            if len(some_text) > 14:
-                for i in range(14):
+            if len(some_text) > 12:
+                for i in range(12):
                     some_words += some_text[i] + ' '
                 pdf.cell(txt=some_words, ln=1)
-                some_text = some_text[14:]
+                some_text = some_text[12:]
             else:
                 for i in range(len(some_text)):
                     some_words += some_text[i] + ' '
@@ -1349,11 +1348,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         some_text = some_text.split()
         while len(some_text) > 0:
             some_words = ''
-            if len(some_text) > 14:
-                for i in range(14):
+            if len(some_text) > 12:
+                for i in range(12):
                     some_words += some_text[i] + ' '
                 pdf.cell(txt=some_words, ln=1)
-                some_text = some_text[14:]
+                some_text = some_text[12:]
             else:
                 for i in range(len(some_text)):
                     some_words += some_text[i] + ' '
@@ -1367,11 +1366,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         some_text = some_text.split()
         while len(some_text) > 0:
             some_words = ''
-            if len(some_text) > 14:
-                for i in range(14):
+            if len(some_text) > 12:
+                for i in range(12):
                     some_words += some_text[i] + ' '
                 pdf.cell(txt=some_words, ln=1)
-                some_text = some_text[14:]
+                some_text = some_text[12:]
             else:
                 for i in range(len(some_text)):
                     some_words += some_text[i] + ' '
@@ -1385,11 +1384,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         some_text = some_text.split()
         while len(some_text) > 0:
             some_words = ''
-            if len(some_text) > 14:
-                for i in range(14):
+            if len(some_text) > 12:
+                for i in range(12):
                     some_words += some_text[i] + ' '
                 pdf.cell(txt=some_words, ln=1)
-                some_text = some_text[14:]
+                some_text = some_text[12:]
             else:
                 for i in range(len(some_text)):
                     some_words += some_text[i] + ' '
