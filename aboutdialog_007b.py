@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'aboutdialog_006b.ui'
+# Form implementation generated from reading ui file 'aboutdialog_007b.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -52,5 +52,5 @@ class Ui_aboutDialog(object):
         _translate = QtCore.QCoreApplication.translate
         aboutDialog.setWindowTitle(_translate("aboutDialog", "About EFPM CharGen"))
         self.aboutOKButton.setText(_translate("aboutDialog", "OK"))
-        self.textLabel.setText(_translate("aboutDialog", "<html><head/><body><p><span style=\" font-weight:600;\">EFPM CharGen for Windows 10</span></p><p>Version: Total Party Skills Edition</p><p>Build: 0.0.6 (Beta)</p><p>Produced by Shawn Driscoll. Copyright (C) 2021.</p><p>Buy the game at <a href=\"https://www.drivethrurpg.com/product/371424/Escape-from-Planet-Matriarchy\"><span style=\" text-decoration: underline; color:#0000ff;\">DriveThruRPG</span></a><br/><br/>Visit blog at <a href=\"http://shawndriscoll.blogspot.com\"><span style=\" text-decoration: underline; color:#0000ff;\">shawndriscoll.blogspot.com</span></a><br/>For support, email <a href=\"mailto:shawndriscoll@hotmail.com?subject=EFPM CharGen 0.0.6b\"><span style=\" text-decoration: underline; color:#0000ff;\">shawndriscoll@hotmail.com</span></a></p><p>Qt GUI Toolkit is copyright (C) 2020 The Qt Company Ltd</p><p><br/></p><p>The Escape from Planet Matriarchy! RPG was written by R. Joshua Holland. Copyright 2021 - 2022, Total Party Skills.</p></body></html>"))
+        self.textLabel.setText(_translate("aboutDialog", "<html><head/><body><p><span style=\" font-weight:600;\">EFPM CharGen for Windows 10</span></p><p>Version: Total Party Skills Edition</p><p>Build: 0.07 (Beta)</p><p>Produced by Shawn Driscoll. Copyright (C) 2021.</p><p>Buy the game at <a href=\"https://www.drivethrurpg.com/product/371424/Escape-from-Planet-Matriarchy\"><span style=\" text-decoration: underline; color:#0000ff;\">DriveThruRPG</span></a><br/><br/>Visit blog at <a href=\"http://shawndriscoll.blogspot.com\"><span style=\" text-decoration: underline; color:#0000ff;\">shawndriscoll.blogspot.com</span></a><br/>For support, email <a href=\"mailto:shawndriscoll@hotmail.com?subject=EFPM CharGen 0.0.7b\"><span style=\" text-decoration: underline; color:#0000ff;\">shawndriscoll@hotmail.com</span></a></p><p>Qt GUI Toolkit is copyright (C) 2020 The Qt Company Ltd</p><p><br/></p><p>The Escape from Planet Matriarchy! RPG was written by R. Joshua Holland. Copyright 2021 - 2022, Total Party Skills.</p></body></html>"))
 import efpm_chargen_rc
