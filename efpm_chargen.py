@@ -99,7 +99,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.actionAbout_EFPM_CharGen.triggered.connect(self.actionAbout_triggered)
         self.actionQuitProg.triggered.connect(self.actionQuitProg_triggered)
-        self.bodyScore.valueChanged.connect(self.bodyScore_valueChanged)
         self.clearButton.clicked.connect(self.clearButton_clicked)
         self.actionClear.triggered.connect(self.clearButton_clicked)
         self.loadButton.clicked.connect(self.loadButton_clicked)
@@ -111,6 +110,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionVisit_Blog.triggered.connect(self.Visit_Blog)
         self.actionFeedback.triggered.connect(self.Feedback)
         self.actionOverview.triggered.connect(self.Overview_menu)
+        self.bodyScore.valueChanged.connect(self.bodyScore_valueChanged)
         self.mindScore.valueChanged.connect(self.mindScore_valueChanged)
         self.spiritScore.valueChanged.connect(self.spiritScore_valueChanged)
         self.agilitySkill.setDisabled(True)
@@ -1586,11 +1586,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             self.next_level = self.next_level * 2
             
-            
         print('Next XP level', self.next_level, 'Skilling up', self.skilling_up, 'Attributing up', self.attributing_up)
-
-            
-        
     
     def loadButton_clicked(self):
         '''
@@ -1610,9 +1606,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.ageEdit.setDisabled(False)
                 self.genderEdit.setText(self.char_data['Gender'])
                 self.genderEdit.setDisabled(False)
-                self.temp_field = self.char_data['Dept']
-                self.dept_chosen = self.dept_choice.index(self.temp_field)
-                self.deptBox.setCurrentIndex(self.dept_chosen)
+                self.dept_chosen = self.char_data['Dept']
+                self.deptBox.setCurrentIndex(self.dept_choice.index(self.dept_chosen))
                 self.rankDisplay.setText(self.char_data['Rank'])
                 self.xpEdit.setDisabled(False)
                 self.bodyScore.setValue(self.char_data['BODY'])
@@ -1752,9 +1747,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['Boxing'] = self.boxingSkill.value()
             self.char_data['Melee'] = self.meleeSkill.value()
             self.char_data['Ranged'] = self.rangedSkill.value()
-            print(self.dept_chosen)
             self.char_data['Dept'] = self.dept_chosen
-            self.char_data['Rank'] =self.rankDisplay.text()
+            self.char_data['Rank'] = self.rankDisplay.text()
             self.char_data['ARMOR'] = self.armorDisplay.toPlainText()
             self.char_data['WEAPON'] = self.weaponDisplay.toPlainText()
             self.char_data['ITEMS'] = self.itemsDisplay.toPlainText()
@@ -1993,8 +1987,7 @@ if __name__ == '__main__':
 
     log.info(__app__ + ' started, and running...')
 
-    #if trange[0] > 2021 or trange[1] > 11:
-    if trange[0] > 2021:
+    if trange[0] > 2022 or trange[1] > 3:
         __expired_tag__ = True
         __app__ += ' [EXPIRED]'
         
