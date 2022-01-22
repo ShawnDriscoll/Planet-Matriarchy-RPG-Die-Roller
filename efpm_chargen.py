@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM Chargen 0.1.0 Beta
+EFPM CharGen 0.1.0 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -2077,7 +2077,7 @@ if __name__ == '__main__':
     If this program is imported instead of run, none of the code below is executed.
     '''
 
-    log = logging.getLogger('EFPM_Chargen')
+    log = logging.getLogger('EFPM_CharGen')
     log.setLevel(logging.DEBUG)
 
     if not os.path.exists('Logs'):

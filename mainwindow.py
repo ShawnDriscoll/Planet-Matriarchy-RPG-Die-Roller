@@ -1300,7 +1300,8 @@ class Ui_MainWindow(object):
         MainWindow.setTabOrder(self.bodyScore, self.mindScore)
         MainWindow.setTabOrder(self.mindScore, self.spiritScore)
         MainWindow.setTabOrder(self.spiritScore, self.additional1Display)
-        MainWindow.setTabOrder(self.additional1Display, self.agilitySkill)
+        MainWindow.setTabOrder(self.additional1Display, self.encumbered_checkBox)
+        MainWindow.setTabOrder(self.encumbered_checkBox, self.agilitySkill)
         MainWindow.setTabOrder(self.agilitySkill, self.beautySkill)
         MainWindow.setTabOrder(self.beautySkill, self.strengthSkill)
         MainWindow.setTabOrder(self.strengthSkill, self.knowledgeSkill)
@@ -1314,12 +1315,12 @@ class Ui_MainWindow(object):
         MainWindow.setTabOrder(self.meleeSkill, self.rangedSkill)
         MainWindow.setTabOrder(self.rangedSkill, self.additional2Display)
         MainWindow.setTabOrder(self.additional2Display, self.armorDisplay)
-        MainWindow.setTabOrder(self.armorDisplay, self.weaponDisplay)
-        MainWindow.setTabOrder(self.weaponDisplay, self.itemsDisplay)
+        MainWindow.setTabOrder(self.armorDisplay, self.traitsDisplay)
+        MainWindow.setTabOrder(self.traitsDisplay, self.weaponDisplay)
+        MainWindow.setTabOrder(self.weaponDisplay, self.backstoryDisplay)
+        MainWindow.setTabOrder(self.backstoryDisplay, self.itemsDisplay)
         MainWindow.setTabOrder(self.itemsDisplay, self.specialDisplay)
-        MainWindow.setTabOrder(self.specialDisplay, self.traitsDisplay)
-        MainWindow.setTabOrder(self.traitsDisplay, self.backstoryDisplay)
-        MainWindow.setTabOrder(self.backstoryDisplay, self.notesDisplay)
+        MainWindow.setTabOrder(self.specialDisplay, self.notesDisplay)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
