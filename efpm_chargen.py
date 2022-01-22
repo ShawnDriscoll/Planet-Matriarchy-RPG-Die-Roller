@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM Chargen 0.0.7 Beta
+EFPM Chargen 0.1.0 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,8 +25,8 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.0.7 (Beta)'
-__version__ = '0.0.7b'
+__app__ = 'EFPM CharGen 0.1.0 (Beta)'
+__version__ = '0.1.0b'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -148,8 +148,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.meleeSkill.valueChanged.connect(self.meleeSkill_valueChanged)
         self.rangedSkill.valueChanged.connect(self.rangedSkill_valueChanged)
 
+        self.encumbered_checkBox.setDisabled(True)
         self.charnameEdit.setText('Sample Char')
         self.rewardDisplay.setText('None')
+        self.encumbered_flag = False
+        self.encumbered_checkBox.toggled.connect(self.encumbered_checkBox_changed)
+        self.encumbered_checkBox.setChecked(self.encumbered_flag)
         self.armorDisplay.setPlainText('None')
         self.weaponDisplay.setPlainText('None')
         self.starting_items = 'Underwear, small Logbook, NASA ID'
@@ -199,7 +203,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.game_name = 'ESCAPE from PLANET MATRIARCHY!'
         self.char_folder = 'Planet Matriarchy Characters'
         self.file_extension = '.tps'
-        self.file_format = 2.0
+        self.file_format = 3.0
 
         # Set the About menu item
         self.popAboutDialog = aboutDialog()
@@ -250,6 +254,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.meleeSkill.setDisabled(True)
             self.rangedSkill.setDisabled(True)
             self.additional2Display.setDisabled(True)
+            self.encumbered_checkBox.setDisabled(True)
             self.charnameEdit.setDisabled(True)
             self.ageEdit.setDisabled(True)
             self.genderEdit.setDisabled(True)
@@ -275,12 +280,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             os.chdir(self.temp_dir + '\.tpsrpg')
             if not os.path.exists(self.char_folder):
                 os.mkdir(self.char_folder)
-                log.info(self.char_folder + ' folder created')
+                log.info(self.char_folder + ' folder created.')
             if not os.path.exists('tps.ini'):
                 with open('tps.ini', 'w') as f:
                     f.write('[CharGen Folders]\n')
                     f.write(self.char_folder + '\n')
-                log.info('tps.ini created and initialized')
+                log.info('tps.ini created and initialized.')
             else:
                 self.contains_foldername = False
                 with open('tps.ini', 'r') as f:
@@ -289,7 +294,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if not self.contains_foldername:
                     with open('tps.ini', 'a') as f:
                         f.write(self.char_folder + '\n')
-                    log.info(self.char_folder + ' added to TPS folder list')
+                    log.info(self.char_folder + ' added to TPS folder list.')
 
     #   Initialize Attribute Scores
     
@@ -359,11 +364,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.movementDisplay.setText(str(1 + self.bodyScore.value() + self.agilitySkill.value()) + ' spaces')
         self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
 
+    def encumbered_checkBox_changed(self):
+        self.encumbered_flag = self.encumbered_checkBox.isChecked()
+        #print(self.encumbered_flag)
+        red_flag = False
+        temp_encumbrance = 1 + self.bodyScore.value() + self.strengthSkill.value()
+        temp_movement = 1 + self.bodyScore.value() + self.agilitySkill.value()
+        temp_range = 1 + self.bodyScore.value() + self.strengthSkill.value()
+        if int(self.healthDisplay.text()) > 1 and not self.encumbered_flag:
+            log.debug('Character can move fine.')
+        elif int(self.healthDisplay.text()) == 1:
+            red_flag = True
+            temp_movement = temp_movement // 2
+            temp_range = temp_range // 2
+            log.debug("Wounded character's movement is cut in half.")
+        elif int(self.healthDisplay.text()) < 1:
+            red_flag = True
+            temp_movement = 0
+            temp_range = 0
+            log.debug("Character can't move.")
+        if self.encumbered_flag:
+            red_flag = True
+            temp_movement = temp_movement // 2
+            temp_range = temp_range // 2
+            log.debug("Encumbered character's movement is cut in half.")
+        self.encumbranceDisplay.setText(str(temp_encumbrance) + ' items')
+        if self.encumbered_flag:
+            self.encumberedStatus.setText('<span style=" color:#ff0000;">Encumbered</span>')
+        else:
+            self.encumberedStatus.setText('')
+        if red_flag:
+            self.movementDisplay.setText('<span style=" color:#ff0000;">' + str(temp_movement) + ' spaces</span>')
+            self.rangeDisplay.setText('<span style=" color:#ff0000;">' + str(temp_range) + ' miles</span>')
+        else:
+            self.movementDisplay.setText(str(temp_movement) + ' spaces')
+            self.rangeDisplay.setText(str(temp_range) + ' miles')
+
     def clearButton_clicked(self):
         '''
         Clear all the fields
         '''
-        log.info('Clear all fields')
+        log.info('Clear all fields.')
         self.status_level = [2, 2, 2]
 
         self.bodyScore.setValue(self.attribute_score[self.body])
@@ -450,7 +491,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.xpEdit.setText(str(self.char_xp))
         self.next_level = 100
 
-        self.charnameEdit.setText('')
+        self.encumbered_checkBox.setDisabled(True)
+        self.encumbered_flag = False
+        self.encumbered_checkBox.setChecked(self.encumbered_flag)
+        self.charnameEdit.setText('Sample Char')
         self.charnameEdit.setDisabled(True)
         self.ageEdit.setText('')
         self.ageEdit.setDisabled(True)
@@ -460,6 +504,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.healthStatus.setText('')
         self.sanityStatus.setText('')
         self.moraleStatus.setText('')
+        self.encumberedStatus.setText('')
         self.bodyScore.setDisabled(False)
         self.mindScore.setDisabled(False)
         self.spiritScore.setDisabled(False)
@@ -667,6 +712,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -684,6 +730,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -733,6 +780,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -750,6 +798,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -802,6 +851,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -819,6 +869,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -868,6 +919,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -885,6 +937,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -934,6 +987,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -951,6 +1005,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1000,6 +1055,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1017,6 +1073,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1066,6 +1123,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1083,6 +1141,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1132,6 +1191,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1149,6 +1209,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1198,6 +1259,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1215,6 +1277,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1264,6 +1327,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1281,6 +1345,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1330,6 +1395,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1347,6 +1413,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1396,6 +1463,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     self.deptBox.setDisabled(False)
                 else:
                     self.xpEdit.setDisabled(False)
+                    self.encumbered_checkBox.setDisabled(False)
                     self.charnameEdit.setDisabled(False)
                     self.ageEdit.setDisabled(False)
                     self.genderEdit.setDisabled(False)
@@ -1413,6 +1481,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.actionPrint.setDisabled(True)
             else:
                 self.deptBox.setDisabled(True)
+                self.encumbered_checkBox.setDisabled(True)
                 self.charnameEdit.setDisabled(True)
                 self.ageEdit.setDisabled(True)
                 self.genderEdit.setDisabled(True)
@@ -1619,6 +1688,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.healthStatus.setText('')
                 self.sanityStatus.setText('')
                 self.moraleStatus.setText('')
+                self.encumberedStatus.setText('')
+                self.encumbered_flag = self.char_data['Encumbered']
+                self.encumbered_checkBox.setChecked(self.encumbered_flag)
                 self.healthDisplay.setText(self.char_data['HEALTH'])
                 if self.healthDisplay.text() == '2':
                     self.healthStatus.setText('<span style=" color:#ff0000;">Hurt</span>')
@@ -1679,21 +1751,39 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.rangedSkill.setDisabled(True)
                 self.additional2Display.setText('0')
                 self.rewardDisplay.setText(self.char_data['Reward'])
-                if int(self.healthDisplay.text()) > 1:
-                    self.encumbranceDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' items')
-                    self.movementDisplay.setText(str(1 + self.bodyScore.value() + self.agilitySkill.value()) + ' spaces')
-                    self.rangeDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' miles')
+                red_flag = False
+                temp_encumbrance = 1 + self.bodyScore.value() + self.strengthSkill.value()
+                temp_movement = 1 + self.bodyScore.value() + self.agilitySkill.value()
+                temp_range = 1 + self.bodyScore.value() + self.strengthSkill.value()
+                if int(self.healthDisplay.text()) > 1 and not self.encumbered_flag:
                     log.debug('Character can move fine.')
                 elif int(self.healthDisplay.text()) == 1:
-                    self.encumbranceDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' items')
-                    self.movementDisplay.setText('<span style=" color:#ff0000;">' + str((1 + self.bodyScore.value() + self.agilitySkill.value()) // 2) + ' spaces</span>')
-                    self.rangeDisplay.setText('<span style=" color:#ff0000;">' + str((1 + self.bodyScore.value() + self.strengthSkill.value()) // 2) + ' miles</span>')
-                    log.debug("Character's movement is cut in half.")
+                    red_flag = True
+                    temp_movement = temp_movement // 2
+                    temp_range = temp_range // 2
+                    log.debug("Wounded character's movement is cut in half.")
                 elif int(self.healthDisplay.text()) < 1:
-                    self.encumbranceDisplay.setText(str(1 + self.bodyScore.value() + self.strengthSkill.value()) + ' items')
-                    self.movementDisplay.setText('<span style=" color:#ff0000;">0 spaces</span>')
-                    self.rangeDisplay.setText('<span style=" color:#ff0000;">0 miles</span>')
+                    red_flag = True
+                    temp_movement = 0
+                    temp_range = 0
                     log.debug("Character can't move.")
+                if self.encumbered_flag:
+                    red_flag = True
+                    temp_movement = temp_movement // 2
+                    temp_range = temp_range // 2
+                    log.debug("Encumbered character's movement is cut in half.")
+                self.encumbranceDisplay.setText(str(temp_encumbrance) + ' items')
+                if self.encumbered_flag:
+                    self.encumberedStatus.setText('<span style=" color:#ff0000;">Encumbered</span>')
+                else:
+                    self.encumberedStatus.setText('')
+                if red_flag:
+                    self.movementDisplay.setText('<span style=" color:#ff0000;">' + str(temp_movement) + ' spaces</span>')
+                    self.rangeDisplay.setText('<span style=" color:#ff0000;">' + str(temp_range) + ' miles</span>')
+                else:
+                    self.movementDisplay.setText(str(temp_movement) + ' spaces')
+                    self.rangeDisplay.setText(str(temp_range) + ' miles')
+                self.encumbered_checkBox.setDisabled(False)
                 self.armorDisplay.setPlainText(self.char_data['ARMOR'])
                 self.weaponDisplay.setPlainText(self.char_data['WEAPON'])
                 self.itemsDisplay.setPlainText(self.char_data['ITEMS'])
@@ -1729,6 +1819,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['Age'] = self.ageEdit.text()
             self.char_data['Gender'] = self.genderEdit.text()
             self.char_data['Reward'] = self.rewardDisplay.text()
+            self.char_data['Encumbered'] = self.encumbered_flag
             self.char_data['BODY'] = self.bodyScore.value()
             self.char_data['MIND'] = self.mindScore.value()
             self.char_data['SPIRIT'] = self.spiritScore.value()
@@ -1747,6 +1838,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['Boxing'] = self.boxingSkill.value()
             self.char_data['Melee'] = self.meleeSkill.value()
             self.char_data['Ranged'] = self.rangedSkill.value()
+            self.char_data['Art'] = -1
+            self.char_data['Languages'] = -1
+            self.char_data['Science'] = -1
+            self.char_data['Bless'] = -1
+            self.char_data['Exorcism'] = -1
+            self.char_data['Healing'] = -1
+            self.char_data['Demonology'] = -1
+            self.char_data['Metamorphosis'] = -1
+            self.char_data['Necromancy'] = -1
+            self.char_data['Clairvoyance'] = -1
+            self.char_data['Psychokinesis'] = -1
+            self.char_data['Telepathy'] = -1
             self.char_data['Dept'] = self.dept_chosen
             self.char_data['Rank'] = self.rankDisplay.text()
             self.char_data['ARMOR'] = self.armorDisplay.toPlainText()
@@ -1755,6 +1858,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['SPECIAL'] = self.specialDisplay.toPlainText()
             self.char_data['TRAITS'] = self.traitsDisplay.toPlainText()
             self.char_data['BACKSTORY'] = self.backstoryDisplay.toPlainText()
+            self.initial_note = 'Not psionic.'
+            if 'psionic' not in self.notesDisplay.toPlainText() and 'Psionic' not in self.notesDisplay.toPlainText():
+                if self.notesDisplay.toPlainText() == '':
+                    self.notesDisplay.setPlainText(self.initial_note)
+                else:
+                    self.notesDisplay.setPlainText(self.notesDisplay.toPlainText() + '\n' + self.initial_note)
             self.char_data['NOTES'] = self.notesDisplay.toPlainText()
             self.char_data['Level'] = self.char_level
             self.char_data['XP'] = self.char_xp
@@ -1917,7 +2026,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 some_text = ''
 
         pdf.output(self.char_folder + '/' + self.charnameEdit.text() + '.pdf')
-        log.info('Character printed as ' + self.charnameEdit.text() + '.pdf')
+        log.info('Character printed as ' + self.charnameEdit.text() + '.pdf.')
 
     def Visit_Blog(self):
         '''
@@ -1968,7 +2077,7 @@ if __name__ == '__main__':
     If this program is imported instead of run, none of the code below is executed.
     '''
 
-    log = logging.getLogger('EFPM_Chargen_' + __version__)
+    log = logging.getLogger('EFPM_Chargen')
     log.setLevel(logging.DEBUG)
 
     if not os.path.exists('Logs'):
