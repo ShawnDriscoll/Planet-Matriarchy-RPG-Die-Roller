@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM CharGen 0.1.0 Beta
+EFPM CharGen 0.1.1 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,8 +25,8 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.1.0 (Beta)'
-__version__ = '0.1.0b'
+__app__ = 'EFPM CharGen 0.1.1 (Beta)'
+__version__ = '0.1.1b'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -1566,8 +1566,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if current_xp == '':
             current_xp = 0
         else:
-            current_xp = int(current_xp)
-        if current_xp >= self.next_level and current_xp < self.next_level * 2:
+            current_xp = current_xp.strip('-')
+            current_xp = current_xp.strip('+')
+            if current_xp != '0':
+                current_xp = current_xp.lstrip('0')
+            current_xp = int(eval(current_xp))
+        if self.char_level < 5 and current_xp >= self.next_level and current_xp < self.next_level * 2:
             self.char_xp = current_xp - self.next_level
             self.xpEdit.setText(str(self.char_xp))
             self.char_level += 1
