@@ -63,9 +63,11 @@ Things To-Do
 | Instruction manual.
 | Cheat codes.
 |ss|  
+
 | Move PDF character sheets closer to program folder.
 | Add Encumbrance rules from Rocket Cadets in the 11th Dimension!
 | Start on a To-Do.
+
 |se|
 
 **Known History**
