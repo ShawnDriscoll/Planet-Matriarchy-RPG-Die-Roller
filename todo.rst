@@ -1,3 +1,11 @@
+.. |ss| raw:: html
+
+    <strike>
+
+.. |se| raw:: html
+
+    </strike>
+
 |ss|  
 line 1
 
