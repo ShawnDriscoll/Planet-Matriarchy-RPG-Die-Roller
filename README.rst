@@ -48,6 +48,32 @@ Not Using Python?
 You can always run the .EXE version for Windows 10 if you don't have the Python language installed. The .EXE version does not create PDFs
 at this time.
 
+.. |ss| raw:: html
+
+    <strike>
+
+.. |se| raw:: html
+
+    </strike>
+
+Things To-Do
+------------
+
+|Continue unifying the skills across all TPS genres.
+|Instruction manual.
+|Cheat codes.
+|ss|  
+|Move PDF character sheets closer to program folder.
+|Add Encumbrance rules from Rocket Cadets in the 11th Dimension!
+|Start on a To-Do.
+|se|
+
+**Known History**
+
+v0.1.2b - Moved the saving of PDF character sheets to the program folder.
+
+v0.1.1b - Added ON/OFF toggle for Encumbrance.
+
 
 The Escape from Planet Matriarchy! RPG was written by R. Joshua Holland.
 Copyright 2021 - 2022, Total Party Skills.
