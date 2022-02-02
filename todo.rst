@@ -17,7 +17,7 @@ Move PDF character sheets closer to program folder.
 Add Encumbrance rules from Rocket Cadets in the 11th Dimension!
 |se|
 
-**History**
+**Known History**
 
 v0.1.2 - Moved the saving of PDF character sheets to the program folder.
 
