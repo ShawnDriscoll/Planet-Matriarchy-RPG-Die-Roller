@@ -12,7 +12,13 @@ Things To-Do
 Continue unifying the skills across all TPS genres.
 
 |ss|  
-line 1
+Move PDF character sheets closer to program folder.
 
-line 2
+Add Encumbrance rules from Rocket Cadets in the 11th Dimension!
 |se|
+
+**History**
+
+v0.1.2 - Moved the saving of PDF character sheets to the program folder.
+
+v0.1.1 - Added ON/OFF toggle for Encumbrance.
