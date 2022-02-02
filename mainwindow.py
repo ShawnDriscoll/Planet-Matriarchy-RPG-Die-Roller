@@ -1324,7 +1324,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "EFPM CharGen 0.1.1 (Beta)"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "EFPM CharGen 0.1.2 (Beta)"))
         self.attributeBox.setTitle(_translate("MainWindow", "Attribute Scores"))
         self.additionalLabel1c.setText(_translate("MainWindow", "Points"))
         self.additionalLabel1b.setText(_translate("MainWindow", "Attribute"))
