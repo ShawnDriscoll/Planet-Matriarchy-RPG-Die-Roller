@@ -20,20 +20,20 @@ Requirements
 
 * **Windows 10**
 
-   It might not work in OSX or Linux.
+  It might not work in OSX or Linux.
 
 * **Python 3.9.7**
    
-   This code was written using the C implementation of Python
-   version 3.9.7. Also known as CPython.
+  This code was written using the C implementation of Python
+  version 3.9.7. Also known as CPython.
    
 * **PyQt5 5.15.4**
 
-   PyQt5 is the framework used for displaying the Window GUI and buttons, etc.
+  PyQt5 is the framework used for displaying the Window GUI and buttons, etc.
 
 * **fpdf2 2.4.5**
 
-   Fpdf2 is needed for printing the character sheets.
+  Fpdf2 is needed for printing the character sheets.
    
 
 Warning
