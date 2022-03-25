@@ -74,11 +74,11 @@ Things To-Do
 
 * v0.1.2b
 
-  * Moved the saving of PDF character sheets to the program folder.
+  Moved the saving of PDF character sheets to the program folder.
 
 * v0.1.1b
 
-  * Added ON/OFF toggle for Encumbrance.
+  Added ON/OFF toggle for Encumbrance.
 
 
 The Escape from Planet Matriarchy! RPG was written by R. Joshua Holland.
@@ -88,4 +88,5 @@ https://www.drivethrurpg.com/product/371424/Escape-from-Planet-Matriarchy
 
 Contact
 -------
+
 Questions? Please contact shawndriscoll@hotmail.com
