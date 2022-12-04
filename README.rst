@@ -10,7 +10,7 @@
 Notes
 -----
 
-**Planet Matriarchy RPG Character Generator** is being developed using Python 3.9.7 and PyQt5.
+**Planet Matriarchy RPG Character Generator** is being developed using Python 3.11.0 and PyQt5.
 
 .. figure:: images/efpm_chargen.png
 
@@ -20,26 +20,21 @@ Requirements
 
 * **Windows 10**
 
-  It might not work in OSX or Linux.
+  It has not been tested in Windows 11.
 
-* **Python 3.9.7**
+* **Python 3.11.0**
    
   This code was written using the C implementation of Python
-  version 3.9.7. Also known as CPython.
+  version 3.11.0. Also known as CPython.
    
-* **PyQt5 5.15.4**
+* **PyQt5 5.15.7**
 
   PyQt5 is the framework used for displaying the Window GUI and buttons, etc.
 
-* **fpdf2 2.4.5**
+* **fpdf2 2.6.0**
 
   Fpdf2 is needed for printing the character sheets.
-   
 
-Warning
--------
-
-This code will not work with **Python 2.7-**.
 
 
 Not Using Python?
@@ -71,6 +66,10 @@ Things To-Do
 |se|
 
 **Known History**
+
+* v0.1.3b
+
+  Updated to Python 3.11.0.
 
 * v0.1.2b
 
