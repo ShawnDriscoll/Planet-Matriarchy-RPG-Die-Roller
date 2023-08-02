@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM CharGen 0.1.3 Beta
+EFPM CharGen 0.1.4 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,8 +25,8 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.1.3 (Beta)'
-__version__ = '0.1.3b'
+__app__ = 'EFPM CharGen 0.1.4 (Beta)'
+__version__ = '0.1.4b'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -2143,6 +2143,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         log.info(__app__ + ' DONE.')
         self.close()
 
+def get_script_folder():
+    # path of main .py or .exe when converted with pyinstaller
+    if getattr(sys, 'frozen', False):
+        script_path = os.path.dirname(sys.executable)
+    else:
+        script_path = os.path.dirname(os.path.abspath(sys.modules['__main__'].__file__))
+    return script_path
+
 if __name__ == '__main__':
     
     '''
@@ -2169,7 +2177,7 @@ if __name__ == '__main__':
 
     log.info(__app__ + ' started, and running...')
 
-    if trange[0] > 2023 or trange[1] > 4:
+    if trange[0] > 2023 or trange[1] > 11:
         __expired_tag__ = True
         __app__ += ' [EXPIRED]'
         
@@ -2177,7 +2185,8 @@ if __name__ == '__main__':
 
     mainApp = MainWindow()
     mainApp.show()
-    
-    CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
+
+    CURRENT_DIR = get_script_folder()
+    log.info('Working Folder: ' + CURRENT_DIR)
 
     app.exec_()

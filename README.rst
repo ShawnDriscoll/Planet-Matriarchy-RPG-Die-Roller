@@ -10,7 +10,7 @@
 Notes
 -----
 
-**Planet Matriarchy RPG Character Generator** is being developed using Python 3.11.0 and PyQt5.
+**Planet Matriarchy RPG Character Generator** is being developed using Python 3.11.4 and PyQt5.
 
 .. figure:: images/efpm_chargen.png
 
@@ -22,16 +22,16 @@ Requirements
 
   It has not been tested in Windows 11.
 
-* **Python 3.11.0**
+* **Python 3.11.4**
    
   This code was written using the C implementation of Python
-  version 3.11.0. Also known as CPython.
+  version 3.11.4. Also known as CPython.
    
-* **PyQt5 5.15.7**
+* **PyQt5 5.15.9**
 
   PyQt5 is the framework used for displaying the Window GUI and buttons, etc.
 
-* **fpdf2 2.6.0**
+* **fpdf2 2.7.4**
 
   Fpdf2 is needed for printing the character sheets.
 
@@ -40,8 +40,7 @@ Requirements
 Not Using Python?
 -----------------
 
-You can always run the .EXE version for Windows 10 if you don't have the Python language installed. The .EXE version does not create PDFs
-at this time.
+You can always run the .EXE version for Windows 10 if you don't have the Python language installed.
 
 .. |ss| raw:: html
 
@@ -59,6 +58,7 @@ Things To-Do
 | Cheat codes.
 |ss|
 
+| EXE version needs to save PDFs.
 | Move PDF character sheets closer to program folder.
 | Add Encumbrance rules from Rocket Cadets in the 11th Dimension!
 | Start on a To-Do.
@@ -66,6 +66,10 @@ Things To-Do
 |se|
 
 **Known History**
+
+* v0.1.4b
+
+  The .EXE version can now save character sheets in PDF.
 
 * v0.1.3b
 
