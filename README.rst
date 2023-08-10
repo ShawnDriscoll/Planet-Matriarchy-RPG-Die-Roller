@@ -31,7 +31,7 @@ Requirements
 
   PyQt5 is the framework used for displaying the Window GUI and buttons, etc.
 
-* **fpdf2 2.7.4**
+* **fpdf2 2.7.5**
 
   Fpdf2 is needed for printing the character sheets.
 
@@ -66,6 +66,10 @@ Things To-Do
 |se|
 
 **Known History**
+
+* v0.1.5b
+
+  Updated to fpdf2 2.7.5.
 
 * v0.1.4b
 

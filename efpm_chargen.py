@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM CharGen 0.1.4 Beta
+EFPM CharGen 0.1.5 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,8 +25,8 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.1.4 (Beta)'
-__version__ = '0.1.4b'
+__app__ = 'EFPM CharGen 0.1.5 (Beta)'
+__version__ = '0.1.5b'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -1883,7 +1883,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         '''
         Print the character as a PDF.
         '''
-        print('Printing as PDF...')
+        print('Printing character sheet...')
         pdf = FPDF(orientation='P', unit='in', format='Letter')
         pdf.add_page()
         pdf.image(name=CURRENT_DIR + '\\efpm_logo.png')
@@ -2099,6 +2099,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 some_text = ''
 
         pdf.output(CURRENT_DIR + '/' + self.charnameEdit.text() + '.pdf')
+        print('...to folder: ' + CURRENT_DIR + '/' + self.charnameEdit.text() + '.pdf')
         log.info('Character printed as ' + self.charnameEdit.text() + '.pdf.')
 
     def Visit_Blog(self):
