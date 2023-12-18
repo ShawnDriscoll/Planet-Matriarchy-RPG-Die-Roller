@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM CharGen 0.1.5 Beta
+EFPM CharGen 0.2.0 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,8 +25,7 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.1.5 (Beta)'
-__version__ = '0.1.5b'
+__app__ = 'EFPM CharGen 0.2.0 (Beta)'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -209,10 +208,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.popAboutDialog = aboutDialog()
 
         # Set the Alert menu item
-        self.popAlertDialog=alertDialog()
+        self.popAlertDialog = alertDialog()
 
         # Set the Save menu item
-        self.popSaveDialog=saveDialog()
+        self.popSaveDialog = saveDialog()
 
         log.info('PyQt5 MainWindow initialized.')
 
@@ -2098,8 +2097,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 pdf.ln()
                 some_text = ''
 
-        pdf.output(CURRENT_DIR + '/' + self.charnameEdit.text() + '.pdf')
-        print('...to folder: ' + CURRENT_DIR + '/' + self.charnameEdit.text() + '.pdf')
+        pdf.output(CURRENT_DIR + '/Characters/' + self.charnameEdit.text() + '.pdf')
+        print('...to folder: ' + CURRENT_DIR + '/Characters/' + self.charnameEdit.text() + '.pdf')
         log.info('Character printed as ' + self.charnameEdit.text() + '.pdf.')
 
     def Visit_Blog(self):
@@ -2164,6 +2163,9 @@ if __name__ == '__main__':
 
     if not os.path.exists('Logs'):
         os.mkdir('Logs')
+        
+    if not os.path.exists('Characters'):
+        os.mkdir('Characters')
     
     fh = logging.FileHandler('Logs/efpm_chargen.log', 'w')
  
@@ -2178,7 +2180,7 @@ if __name__ == '__main__':
 
     log.info(__app__ + ' started, and running...')
 
-    if trange[0] > 2023 or trange[1] > 11:
+    if trange[0] > 2024 or trange[1] > 12:
         __expired_tag__ = True
         __app__ += ' [EXPIRED]'
         

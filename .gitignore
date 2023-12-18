@@ -1,9 +1,10 @@
 
 #############
-## PyDiceroll
+## TPS
 #############
 Logs/
 *.log
+Characters/
 
 
 #############

@@ -18,14 +18,14 @@ Notes
 Requirements
 ------------
 
-* **Windows 10**
+* **Windows 11**
 
-  It has not been tested in Windows 11.
+  It will also run in Windows 10.
 
-* **Python 3.11.4**
+* **Python 3.11.6**
    
   This code was written using the C implementation of Python
-  version 3.11.4. Also known as CPython.
+  version 3.11.6. Also known as CPython.
    
 * **PyQt5 5.15.9**
 
@@ -40,7 +40,7 @@ Requirements
 Not Using Python?
 -----------------
 
-You can always run the .EXE version for Windows 10 if you don't have the Python language installed.
+You can always run the .EXE version for Windows 10 and 11 if you don't have the Python language installed.
 
 .. |ss| raw:: html
 
@@ -66,6 +66,10 @@ Things To-Do
 |se|
 
 **Known History**
+
+* v0.2.0b
+
+  Character PDFs are now saved in **Characters** folder.
 
 * v0.1.5b
 
