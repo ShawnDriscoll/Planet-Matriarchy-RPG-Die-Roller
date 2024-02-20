@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM CharGen 0.2.0 Beta
+EFPM CharGen 0.2.1 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,7 +25,7 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.2.0 (Beta)'
+__app__ = 'EFPM CharGen 0.2.1 (Beta)'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -182,27 +182,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.xpEdit.textChanged.connect(self.xpValue_changed)
 
         self.next_level = 100
+        
+        self.scoreCap = 3
+        self.skillCap = 4
 
-        self.bodyScore.setMaximum(3)
-        self.mindScore.setMaximum(3)
-        self.spiritScore.setMaximum(3)
-        self.agilitySkill.setMaximum(4)
-        self.beautySkill.setMaximum(4)
-        self.strengthSkill.setMaximum(4)
-        self.knowledgeSkill.setMaximum(4)
-        self.perceptionSkill.setMaximum(4)
-        self.technologySkill.setMaximum(4)
-        self.charismaSkill.setMaximum(4)
-        self.empathySkill.setMaximum(4)
-        self.focusSkill.setMaximum(4)
-        self.boxingSkill.setMaximum(4)
-        self.meleeSkill.setMaximum(4)
-        self.rangedSkill.setMaximum(4)
+        self.bodyScore.setMaximum(self.scoreCap)
+        self.mindScore.setMaximum(self.scoreCap)
+        self.spiritScore.setMaximum(self.scoreCap)
+        self.agilitySkill.setMaximum(self.skillCap)
+        self.beautySkill.setMaximum(self.skillCap)
+        self.strengthSkill.setMaximum(self.skillCap)
+        self.knowledgeSkill.setMaximum(self.skillCap)
+        self.perceptionSkill.setMaximum(self.skillCap)
+        self.technologySkill.setMaximum(self.skillCap)
+        self.charismaSkill.setMaximum(self.skillCap)
+        self.empathySkill.setMaximum(self.skillCap)
+        self.focusSkill.setMaximum(self.skillCap)
+        self.boxingSkill.setMaximum(self.skillCap)
+        self.meleeSkill.setMaximum(self.skillCap)
+        self.rangedSkill.setMaximum(self.skillCap)
 
         self.game_name = 'ESCAPE from PLANET MATRIARCHY!'
         self.char_folder = 'Planet Matriarchy Characters'
         self.file_extension = '.tps'
-        self.file_format = 3.0
+        self.file_format = 3.1
 
         # Set the About menu item
         self.popAboutDialog = aboutDialog()
@@ -260,6 +263,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.deptBox.setDisabled(True)
             self.rankDisplay.setDisabled(True)
             self.xpEdit.setDisabled(True)
+            self.rewardDisplay.setDisabled(True)
+            self.levelDisplay.setDisabled(True)
             self.armorDisplay.setDisabled(True)
             self.weaponDisplay.setDisabled(True)
             self.itemsDisplay.setDisabled(True)
@@ -420,21 +425,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.sanityDisplay.setText(str(self.status_level[self.sanity] + self.attribute_score[self.mind]))
         self.moraleDisplay.setText(str(self.status_level[self.morale] + self.attribute_score[self.spirit]))
 
-        self.bodyScore.setMaximum(3)
-        self.mindScore.setMaximum(3)
-        self.spiritScore.setMaximum(3)
-        self.agilitySkill.setMaximum(4)
-        self.beautySkill.setMaximum(4)
-        self.strengthSkill.setMaximum(4)
-        self.knowledgeSkill.setMaximum(4)
-        self.perceptionSkill.setMaximum(4)
-        self.technologySkill.setMaximum(4)
-        self.charismaSkill.setMaximum(4)
-        self.empathySkill.setMaximum(4)
-        self.focusSkill.setMaximum(4)
-        self.boxingSkill.setMaximum(4)
-        self.meleeSkill.setMaximum(4)
-        self.rangedSkill.setMaximum(4)
+        self.scoreCap = 3
+        self.skillCap = 4
+
+        self.bodyScore.setMaximum(self.scoreCap)
+        self.mindScore.setMaximum(self.scoreCap)
+        self.spiritScore.setMaximum(self.scoreCap)
+        self.agilitySkill.setMaximum(self.skillCap)
+        self.beautySkill.setMaximum(self.skillCap)
+        self.strengthSkill.setMaximum(self.skillCap)
+        self.knowledgeSkill.setMaximum(self.skillCap)
+        self.perceptionSkill.setMaximum(self.skillCap)
+        self.technologySkill.setMaximum(self.skillCap)
+        self.charismaSkill.setMaximum(self.skillCap)
+        self.empathySkill.setMaximum(self.skillCap)
+        self.focusSkill.setMaximum(self.skillCap)
+        self.boxingSkill.setMaximum(self.skillCap)
+        self.meleeSkill.setMaximum(self.skillCap)
+        self.rangedSkill.setMaximum(self.skillCap)
         self.agilitySkill.setValue(0)
         self.beautySkill.setValue(0)
         self.strengthSkill.setValue(0)
@@ -1612,18 +1620,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.additional_skill_points = 3
                 self.additional2Display.setText(str(self.additional_skill_points))
                 self.skilling_up = True
-                self.agilitySkill.setMaximum(5)
-                self.beautySkill.setMaximum(5)
-                self.strengthSkill.setMaximum(5)
-                self.knowledgeSkill.setMaximum(5)
-                self.perceptionSkill.setMaximum(5)
-                self.technologySkill.setMaximum(5)
-                self.charismaSkill.setMaximum(5)
-                self.empathySkill.setMaximum(5)
-                self.focusSkill.setMaximum(5)
-                self.boxingSkill.setMaximum(5)
-                self.meleeSkill.setMaximum(5)
-                self.rangedSkill.setMaximum(5)
+                self.skillCap = 5
+                self.agilitySkill.setMaximum(self.skillCap)
+                self.beautySkill.setMaximum(self.skillCap)
+                self.strengthSkill.setMaximum(self.skillCap)
+                self.knowledgeSkill.setMaximum(self.skillCap)
+                self.perceptionSkill.setMaximum(self.skillCap)
+                self.technologySkill.setMaximum(self.skillCap)
+                self.charismaSkill.setMaximum(self.skillCap)
+                self.empathySkill.setMaximum(self.skillCap)
+                self.focusSkill.setMaximum(self.skillCap)
+                self.boxingSkill.setMaximum(self.skillCap)
+                self.meleeSkill.setMaximum(self.skillCap)
+                self.rangedSkill.setMaximum(self.skillCap)
                 self.agilitySkill.setDisabled(False)
                 self.beautySkill.setDisabled(False)
                 self.strengthSkill.setDisabled(False)
@@ -1645,9 +1654,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.additional_attribute_points = 1
                 self.additional1Display.setText(str(self.additional_attribute_points))
                 self.attributing_up = True
-                self.bodyScore.setMaximum(4)
-                self.mindScore.setMaximum(4)
-                self.spiritScore.setMaximum(4)
+                self.scoreCap = 4
+                self.bodyScore.setMaximum(self.scoreCap)
+                self.mindScore.setMaximum(self.scoreCap)
+                self.spiritScore.setMaximum(self.scoreCap)
                 self.bodyScore.setDisabled(False)
                 self.mindScore.setDisabled(False)
                 self.spiritScore.setDisabled(False)
@@ -1672,6 +1682,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.char_data = json.load(json_file)
                 self.format_read = self.char_data['Fileformat']
                 log.info('File format is: ' + str(self.format_read))
+                self.scoreCap = self.char_data['Scorecap']
+                self.bodyScore.setMaximum(self.scoreCap)
+                self.mindScore.setMaximum(self.scoreCap)
+                self.spiritScore.setMaximum(self.scoreCap)
+                self.skillCap = self.char_data['Skillcap']
+                self.agilitySkill.setMaximum(self.skillCap)
+                self.beautySkill.setMaximum(self.skillCap)
+                self.strengthSkill.setMaximum(self.skillCap)
+                self.knowledgeSkill.setMaximum(self.skillCap)
+                self.perceptionSkill.setMaximum(self.skillCap)
+                self.technologySkill.setMaximum(self.skillCap)
+                self.charismaSkill.setMaximum(self.skillCap)
+                self.empathySkill.setMaximum(self.skillCap)
+                self.focusSkill.setMaximum(self.skillCap)
+                self.boxingSkill.setMaximum(self.skillCap)
+                self.meleeSkill.setMaximum(self.skillCap)
+                self.rangedSkill.setMaximum(self.skillCap)
                 self.charnameEdit.setText(self.char_data['Name'])
                 self.charnameEdit.setDisabled(False)
                 self.ageEdit.setText(self.char_data['Age'])
@@ -1818,6 +1845,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             json_file_out = open(self.char_folder + '/' + self.charnameEdit.text() + self.file_extension, 'w')
             self.char_data = {}
             self.char_data['Fileformat'] = self.file_format
+            self.char_data['Scorecap'] = self.scoreCap
+            self.char_data['Skillcap'] = self.skillCap
             self.char_data['Name'] = self.charnameEdit.text()
             self.char_data['Age'] = self.ageEdit.text()
             self.char_data['Gender'] = self.genderEdit.text()
@@ -1929,6 +1958,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         pdf.ln()
         pdf.cell(txt='SPIRIT: ' + str(self.spiritScore.value()))
         pdf.ln()
+        pdf.set_font('Comic Sans MS', '', 16)
         pdf.cell(txt='     Status')
         pdf.ln()
         pdf.set_font('Comic Sans MS', '', 18)

@@ -67,6 +67,10 @@ Things To-Do
 
 **Known History**
 
+* v0.2.1b
+
+  Fixed skill and score caps when saving.
+
 * v0.2.0b
 
   Character PDFs are now saved in **Characters** folder.
