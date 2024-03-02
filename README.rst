@@ -67,6 +67,10 @@ Things To-Do
 
 **Known History**
 
+* v0.3.0b
+
+  Compatible with TPS Die Roller 0.5.0.
+
 * v0.2.1b
 
   Fixed skill and score caps when saving.

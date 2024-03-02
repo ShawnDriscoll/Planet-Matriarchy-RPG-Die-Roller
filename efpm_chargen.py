@@ -4,7 +4,7 @@
 ########################################################
 
 """
-EFPM CharGen 0.2.1 Beta
+EFPM CharGen 0.3.0 Beta
 -----------------------------------------------------------------------
 
 This program generates characters for the Escape From Planet Matriarchy! RPG.
@@ -25,7 +25,7 @@ import json
 from fpdf import FPDF
 
 __author__ = 'Shawn Driscoll <shawndriscoll@hotmail.com>\nshawndriscoll.blogspot.com'
-__app__ = 'EFPM CharGen 0.2.1 (Beta)'
+__app__ = 'EFPM CharGen 0.3.0 (Beta)'
 __expired_tag__ = False
 
 class aboutDialog(QDialog, Ui_aboutDialog):
@@ -205,7 +205,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.game_name = 'ESCAPE from PLANET MATRIARCHY!'
         self.char_folder = 'Planet Matriarchy Characters'
         self.file_extension = '.tps'
-        self.file_format = 3.1
+        self.file_format = 3.2
 
         # Set the About menu item
         self.popAboutDialog = aboutDialog()
@@ -1873,6 +1873,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.char_data['Art'] = -1
             self.char_data['Languages'] = -1
             self.char_data['Science'] = -1
+            self.char_data['Dodge'] = -1
+            self.char_data['Parry'] = -1
+            self.char_data['Strike'] = -1
             self.char_data['Bless'] = -1
             self.char_data['Exorcism'] = -1
             self.char_data['Healing'] = -1
