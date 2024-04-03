@@ -36,36 +36,16 @@ Requirements
   Fpdf2 is needed for printing the character sheets.
 
 
-
-Not Using Python?
------------------
-
-You can always run the .EXE version for Windows 10 and 11 if you don't have the Python language installed.
-
-.. |ss| raw:: html
-
-    <strike>
-
-.. |se| raw:: html
-
-    </strike>
-
 Things To-Do
 ------------
 
 | Continue unifying the skills across all TPS genres.
 | Instruction manual.
 | Cheat codes.
-|ss|
 
-| EXE version needs to save PDFs.
-| Move PDF character sheets closer to program folder.
-| Add Encumbrance rules from Rocket Cadets in the 11th Dimension!
-| Start on a To-Do.
 
-|se|
-
-**Known History**
+Known History
+-------------
 
 * v0.3.0b
 
